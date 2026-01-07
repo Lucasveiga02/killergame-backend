@@ -10,7 +10,7 @@ import unicodedata
 
 app = Flask(__name__)
 
-# Autorise uniquement ton GitHub Pages
+# Autorise ton GitHub Pages
 CORS(app, origins=["https://lucasveiga02.github.io"])
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -42,12 +42,25 @@ def load_json(path: Path, default):
 
 
 def save_json(path: Path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def ensure_player_state(state: dict, player_id: str) -> dict:
+    """Crée l'entrée state pour un joueur si absente. ID = nom."""
+    if player_id not in state:
+        state[player_id] = {
+            "mission_done": False,
+            "guess": None,
+            "points": 0,
+            "discovered_by_target": False
+        }
+    return state[player_id]
+
+
 # -------------------------------------------------------------------
-# HEALTH CHECK (TEST API)
+# HEALTH CHECK
 # -------------------------------------------------------------------
 
 @app.get("/")
@@ -57,7 +70,7 @@ def health():
 
 # -------------------------------------------------------------------
 # GET /api/players
-# → utilisé pour l’autocomplete (accueil + accusation)
+# -> utilisé pour autocomplete (accueil + accusation)
 # -------------------------------------------------------------------
 
 @app.get("/api/players")
@@ -68,7 +81,7 @@ def get_players():
 
 # -------------------------------------------------------------------
 # GET /api/mission?player=<display>
-# → récupération mission + cible
+# -> récup mission + cible + statut mission_done
 # -------------------------------------------------------------------
 
 @app.get("/api/mission")
@@ -84,32 +97,18 @@ def get_mission():
     norm_input = normalize(player_display)
 
     for a in assignments:
-        if normalize(a["killer"]) == norm_input:
+        if normalize(a.get("killer", "")) == norm_input:
             killer_name = a["killer"]
 
-            # état du joueur (créé si absent)
-            player_state = state.setdefault(killer_name, {
-                "mission_done": False,
-                "guess": None,
-                "points": 0,
-                "discovered_by_target": False
-            })
-
+            player_state = ensure_player_state(state, killer_name)
             save_json(STATE_FILE, state)
 
             return jsonify(
                 ok=True,
-                player={
-                    "id": a.get("killer_id"),
-                    "display": killer_name
-                },
-                mission={
-                    "text": a["mission"]
-                },
-                target={
-                    "display": a["target"]
-                },
-                mission_done=player_state["mission_done"]
+                player={"id": killer_name, "display": killer_name},
+                mission={"text": a.get("mission", "—")},
+                target={"display": a.get("target", "—")},
+                mission_done=bool(player_state.get("mission_done", False))
             )
 
     return jsonify(ok=False, error="Player not found"), 404
@@ -117,24 +116,20 @@ def get_mission():
 
 # -------------------------------------------------------------------
 # POST /api/mission_done
-# → bouton "J’ai effectué ma mission"
+# body: { player_id: "<nom>" }  (ou player_display)
+# -> valide "J’ai effectué ma mission"
 # -------------------------------------------------------------------
 
 @app.post("/api/mission_done")
 def mission_done():
     data = request.get_json() or {}
-    player_display = data.get("player_display")
+    player_id = data.get("player_id") or data.get("player_display")
 
-    if not player_display:
-        return jsonify(ok=False, error="Missing player_display"), 400
+    if not player_id:
+        return jsonify(ok=False, error="Missing player_id"), 400
 
     state = load_json(STATE_FILE, {})
-    entry = state.setdefault(player_display, {
-        "mission_done": False,
-        "guess": None,
-        "points": 0,
-        "discovered_by_target": False
-    })
+    entry = ensure_player_state(state, player_id)
 
     entry["mission_done"] = True
     save_json(STATE_FILE, state)
@@ -144,32 +139,35 @@ def mission_done():
 
 # -------------------------------------------------------------------
 # POST /api/guess
-# → "J’ai trouvé la mission dont j’étais la cible"
+# body: {
+#   player_id: "<nom>",
+#   accused_killer_id: "<nom>" (ou accused_killer_display),
+#   guessed_mission: "..."
+# }
+# -> enregistre le guess
 # -------------------------------------------------------------------
 
 @app.post("/api/guess")
 def submit_guess():
     data = request.get_json() or {}
 
-    player_id = data.get("player_id")
-    accused_id = data.get("accused_killer_id")
-    accused_display = data.get("accused_killer_display")
+    player_id = data.get("player_id") or data.get("player_display")
+    accused_id = data.get("accused_killer_id") or data.get("accused_killer_display")
     guessed_mission = data.get("guessed_mission")
 
-    if not all([accused_display, guessed_mission]):
-        return jsonify(ok=False, error="Incomplete guess"), 400
+    if not player_id:
+        return jsonify(ok=False, error="Missing player_id"), 400
+    if not accused_id:
+        return jsonify(ok=False, error="Missing accused_killer_id"), 400
+    if not guessed_mission:
+        return jsonify(ok=False, error="Missing guessed_mission"), 400
 
     state = load_json(STATE_FILE, {})
-    player_entry = state.setdefault(player_id or "unknown", {
-        "mission_done": False,
-        "guess": None,
-        "points": 0,
-        "discovered_by_target": False
-    })
+    entry = ensure_player_state(state, player_id)
 
-    player_entry["guess"] = {
-        "killer_id": accused_id,
-        "killer_display": accused_display,
+    entry["guess"] = {
+        "killer_id": accused_id,          # ID = nom
+        "killer_display": accused_id,     # affichage = nom
         "mission": guessed_mission
     }
 
@@ -179,7 +177,7 @@ def submit_guess():
 
 # -------------------------------------------------------------------
 # GET /api/leaderboard
-# → écran admin (Lucas Veiga)
+# -> tableau admin
 # -------------------------------------------------------------------
 
 @app.get("/api/leaderboard")
@@ -188,18 +186,19 @@ def leaderboard():
     state = load_json(STATE_FILE, {})
 
     rows = []
-
     for p in players:
-        display = p["display"]
-        s = state.get(display, {})
+        name = p.get("id")  # ID = nom
+        if not name:
+            continue
 
+        s = state.get(name, {})
         guess = s.get("guess") or {}
 
         rows.append({
-            "display": display,
+            "display": name,
             "points": s.get("points", 0),
-            "mission_done": s.get("mission_done", False),
-            "discovered_by_target": s.get("discovered_by_target", False),
+            "mission_done": bool(s.get("mission_done", False)),
+            "discovered_by_target": bool(s.get("discovered_by_target", False)),
             "found_killer": bool(guess),
             "guess_killer_display": guess.get("killer_display"),
             "guess_mission": guess.get("mission")
