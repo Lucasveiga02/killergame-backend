@@ -13,11 +13,9 @@ app = Flask(__name__)
 # CORS: autoriser GitHub Pages + dev local, et couvrir OPTIONS (preflight)
 CORS(
     app,
-    resources={r"/api/*": {"origins": [
-        "https://lucasveiga02.github.io",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ]}},
+    resources={r"/api/*": {"origins": "https://lucasveiga02.github.io"}},
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
 )
 
 BASE_DIR = Path(__file__).resolve().parent
