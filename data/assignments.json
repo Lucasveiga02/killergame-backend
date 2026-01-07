@@ -1,56 +1,194 @@
-[
-  { "killer": "Pauline", "target": "Lucas", "mission": "__A_REMPLIR__" },
-  { "killer": "Lucas", "target": "Gaby", "mission": "__A_REMPLIR__" },
-  { "killer": "Gaby", "target": "Fernand", "mission": "__A_REMPLIR__" },
-  { "killer": "Fernand", "target": "Isabel", "mission": "__A_REMPLIR__" },
-  { "killer": "Isabel", "target": "Jumelles", "mission": "__A_REMPLIR__" },
-  { "killer": "Jumelles", "target": "Lou", "mission": "__A_REMPLIR__" },
-  { "killer": "Lou", "target": "Maelenn", "mission": "__A_REMPLIR__" },
-  { "killer": "Maelenn", "target": "Emie", "mission": "__A_REMPLIR__" },
-  { "killer": "Emie", "target": "Mathis", "mission": "__A_REMPLIR__" },
-  { "killer": "Mathis", "target": "Manon", "mission": "__A_REMPLIR__" },
-
-  { "killer": "Manon", "target": "Romain H", "mission": "__A_REMPLIR__" },
-  { "killer": "Romain H", "target": "Maelann", "mission": "__A_REMPLIR__" },
-  { "killer": "Maelann", "target": "Romain V", "mission": "__A_REMPLIR__" },
-  { "killer": "Romain V", "target": "Cécile", "mission": "__A_REMPLIR__" },
-  { "killer": "Cécile", "target": "Steven", "mission": "__A_REMPLIR__" },
-  { "killer": "Steven", "target": "Inès", "mission": "__A_REMPLIR__" },
-  { "killer": "Inès", "target": "Antoine", "mission": "__A_REMPLIR__" },
-  { "killer": "Antoine", "target": "Léa Latouche", "mission": "__A_REMPLIR__" },
-  { "killer": "Léa Latouche", "target": "Ludo", "mission": "__A_REMPLIR__" },
-  { "killer": "Ludo", "target": "Sara", "mission": "__A_REMPLIR__" },
-
-  { "killer": "Sara", "target": "Marc", "mission": "__A_REMPLIR__" },
-  { "killer": "Marc", "target": "Aude", "mission": "__A_REMPLIR__" },
-  { "killer": "Aude", "target": "Théo", "mission": "__A_REMPLIR__" },
-  { "killer": "Théo", "target": "Maëva", "mission": "__A_REMPLIR__" },
-  { "killer": "Maëva", "target": "Domitille", "mission": "__A_REMPLIR__" },
-  { "killer": "Domitille", "target": "Joyce", "mission": "__A_REMPLIR__" },
-  { "killer": "Joyce", "target": "Nolwenn", "mission": "__A_REMPLIR__" },
-  { "killer": "Nolwenn", "target": "Mathilde", "mission": "__A_REMPLIR__" },
-  { "killer": "Mathilde", "target": "Léa Gaussot", "mission": "__A_REMPLIR__" },
-  { "killer": "Léa Gaussot", "target": "Maxence", "mission": "__A_REMPLIR__" },
-
-  { "killer": "Maxence", "target": "Enzo", "mission": "__A_REMPLIR__" },
-  { "killer": "Enzo", "target": "Alex", "mission": "__A_REMPLIR__" },
-  { "killer": "Alex", "target": "Nellie", "mission": "__A_REMPLIR__" },
-  { "killer": "Nellie", "target": "Hugues", "mission": "__A_REMPLIR__" },
-  { "killer": "Hugues", "target": "Elodie", "mission": "__A_REMPLIR__" },
-  { "killer": "Elodie", "target": "Stéphane", "mission": "__A_REMPLIR__" },
-  { "killer": "Stéphane", "target": "Adélaide", "mission": "__A_REMPLIR__" },
-  { "killer": "Adélaide", "target": "Jean-Mi", "mission": "__A_REMPLIR__" },
-  { "killer": "Jean-Mi", "target": "Jose", "mission": "__A_REMPLIR__" },
-  { "killer": "Jose", "target": "Aïda", "mission": "__A_REMPLIR__" },
-
-  { "killer": "Aïda", "target": "François", "mission": "__A_REMPLIR__" },
-  { "killer": "François", "target": "Christine", "mission": "__A_REMPLIR__" },
-  { "killer": "Christine", "target": "Justine", "mission": "__A_REMPLIR__" },
-  { "killer": "Justine", "target": "Zara", "mission": "__A_REMPLIR__" },
-  { "killer": "Zara", "target": "Claude", "mission": "__A_REMPLIR__" },
-  { "killer": "Claude", "target": "Fanny", "mission": "__A_REMPLIR__" },
-  { "killer": "Fanny", "target": "David", "mission": "__A_REMPLIR__" },
-  { "killer": "David", "target": "Tony", "mission": "__A_REMPLIR__" },
-  { "killer": "Tony", "target": "Sylvie", "mission": "__A_REMPLIR__" },
-  { "killer": "Sylvie", "target": "Pauline", "mission": "__A_REMPLIR__" }
-]
+{
+  "Maxence": {
+    "target": "Romain",
+    "mission": "Proposer un concours de pompes à Romain."
+  },
+  "Romain": {
+    "target": "David",
+    "mission": "Faire un câlin à David."
+  },
+  "David": {
+    "target": "Fernand",
+    "mission": "Faire un photobooth avec Fernand."
+  },
+  "Fernand": {
+    "target": "Elodie",
+    "mission": "Inviter Elodie à danser."
+  },
+  "Elodie": {
+    "target": "Jumelles",
+    "mission": "Chanter une comptine aux Jumelles."
+  },
+  "Jumelles": {
+    "target": "Maëva",
+    "mission": "Faire un TikTok (trend) avec Maëva."
+  },
+  "Maëva": {
+    "target": "Hugues",
+    "mission": "Demander des conseils à Hugues pour une maladie imaginaire qui a frappé sa chèvre."
+  },
+  "Hugues": {
+    "target": "Théo",
+    "mission": "Faire un bras de fer avec Théo."
+  },
+  "Théo": {
+    "target": "Mathilde",
+    "mission": "Choisir un accent et faire connaissance avec Mathilde en prenant cet accent."
+  },
+  "Mathilde": {
+    "target": "Christine",
+    "mission": "Demander à Christine sa routine capillaire."
+  },
+  "Christine": {
+    "target": "Fanny",
+    "mission": "Demander à Fanny sa musique préférée puis aller la mettre sur l’enceinte."
+  },
+  "Fanny": {
+    "target": "Domitille",
+    "mission": "Faire un chifoumi en 3 avec Domitille et la battre (recommencer tant que tu perds)."
+  },
+  "Domitille": {
+    "target": "Ludo",
+    "mission": "Faire croire à Ludo que tu déménages à Toulouse et que tu as besoin de son aide (c’est son métier)."
+  },
+  "Ludo": {
+    "target": "Claude",
+    "mission": "Faire un bisou sur le crâne de Claude."
+  },
+  "Claude": {
+    "target": "Inès",
+    "mission": "Faire croire à Inès que tu as réservé une greffe de cheveux en Turquie et lui demander des conseils pour des facettes."
+  },
+  "Inès": {
+    "target": "Mathis",
+    "mission": "Faire danser Mathis sur le kuduro et lui apprendre avant que la musique ne passe."
+  },
+  "Mathis": {
+    "target": "Stéphane",
+    "mission": "Passer des menottes à Stéphane et le livrer à Sylvie sans contexte."
+  },
+  "Stéphane": {
+    "target": "Sylvie",
+    "mission": "Expliquer à Sylvie pourquoi tu détestes la Bretagne."
+  },
+  "Sylvie": {
+    "target": "Nolwenn",
+    "mission": "Attendre qu’on te livre quelqu’un puis lui faire passer un éthylotest."
+  },
+  "Nolwenn": {
+    "target": "François",
+    "mission": "Toucher l’épaule de François à plusieurs reprises sans te faire prendre."
+  },
+  "François": {
+    "target": "Alex",
+    "mission": "Expliquer à Alex l’histoire sombre de la ferme : plusieurs personnes sont mortes dans cette pièce."
+  },
+  "Alex": {
+    "target": "Nellie",
+    "mission": "Annoncer à Nellie que tu pars vivre en Inde."
+  },
+  "Nellie": {
+    "target": "Léa Latouche",
+    "mission": "Piquer le verre de Léa L une bonne partie de la soirée sans te faire prendre."
+  },
+  "Léa Latouche": {
+    "target": "Adélaide",
+    "mission": "Persuader Adélaide qu’il y a le feu dans la cuisine du restaurant et qu’il faut peut-être agir."
+  },
+  "Adélaide": {
+    "target": "Sara",
+    "mission": "Demander à Sara si elle entend aussi ce bruit (choisir le bruit)."
+  },
+  "Sara": {
+    "target": "Manon",
+    "mission": "Expliquer à Manon ta phobie étrange des fruits et légumes oranges."
+  },
+  "Manon": {
+    "target": "Justine",
+    "mission": "Chuchoter à l’oreille de Justine “miaou” à plusieurs reprises au cours de la soirée."
+  },
+  "Justine": {
+    "target": "Maelenn",
+    "mission": "Faire ta meilleure blague à Maelenn."
+  },
+  "Maelenn": {
+    "target": "Marc",
+    "mission": "Prendre le verre que Marc tient dans ses mains et boire devant lui."
+  },
+  "Marc": {
+    "target": "Isabel",
+    "mission": "Faire croire à Isabel que tu as vu deux ou trois souris sur le comptoir."
+  },
+  "Isabel": {
+    "target": "Aude",
+    "mission": "Faire un câlin à Aude trois fois dans la soirée."
+  },
+  "Aude": {
+    "target": "Tony",
+    "mission": "Aller voir Tony et lui dire que quelqu’un l’attend en bas dehors."
+  },
+  "Tony": {
+    "target": "Steven",
+    "mission": "Convaincre Steven de faire un cul sec avec toi."
+  },
+  "Steven": {
+    "target": "Antoine",
+    "mission": "Répéter les phrases d’Antoine."
+  },
+  "Antoine": {
+    "target": "Jean-Mi",
+    "mission": "Faire croire à Jean-Mi que Trump devrait s’occuper de Macron comme il s’est occupé de Maduro."
+  },
+  "Jean-Mi": {
+    "target": "Emie",
+    "mission": "Faire croire à Emie qu’une grosse araignée est posée sur son épaule."
+  },
+  "Emie": {
+    "target": "Joyce",
+    "mission": "Faire signe à Joyce de te suivre dans la mezzanine puis dire “non laisse” trois fois dans la soirée."
+  },
+  "Joyce": {
+    "target": "Gaby",
+    "mission": "Faire croire à Gaby que tu as été figurante dans un film ou une série connue."
+  },
+  "Gaby": {
+    "target": "Zara",
+    "mission": "Faire dire en portugais à Zara : “Eu quero mamar os peitos da cabritinha”."
+  },
+  "Zara": {
+    "target": "José",
+    "mission": "Faire croire à José que tu es la fille du président de Madagascar."
+  },
+  "José": {
+    "target": "Romain V",
+    "mission": "Discuter avec Romain V comme si vous vous connaissiez depuis toujours."
+  },
+  "Romain V": {
+    "target": "Enzo",
+    "mission": "Mimer un éléphant devant Enzo."
+  },
+  "Enzo": {
+    "target": "Maelann",
+    "mission": "Critiquer les kinés auprès de Maelann."
+  },
+  "Maelann": {
+    "target": "Léa Gaussot",
+    "mission": "Faire deviner à Léa G le mot “Tour Eiffel” en mimant."
+  },
+  "Léa Gaussot": {
+    "target": "Cécile",
+    "mission": "Proposer à Cécile un concours de langue en folie (dire 10 fois une phrase difficile sans se tromper)."
+  },
+  "Cécile": {
+    "target": "Lou",
+    "mission": "Faire des grimaces à Lou plusieurs fois dans la soirée sans raison."
+  },
+  "Lou": {
+    "target": "Aïda",
+    "mission": "Faire un slow imaginaire avec quelqu’un pendant 15 secondes."
+  },
+  "Aïda": {
+    "target": "Maxence",
+    "mission": "Lancer la macarena au cours de la soirée et faire une démo depuis la mezzanine avec Maxence."
+  }
+}
